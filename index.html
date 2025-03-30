@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Compare - Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="auth-container" id="authContainer">
+            <div class="auth-form" id="loginForm">
+                <h2>Login</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="login()">Login</button>
+                <p>Don't have an account? <a href="#" onclick="toggleAuth('signup')">Sign Up</a></p>
+            </div>
+
+            <div class="auth-form hidden" id="signupForm">
+                <h2>Sign Up</h2>
+                <input type="text" id="signupName" placeholder="Full Name" required>
+                <input type="email" id="signupEmail" placeholder="Email" required>
+                <input type="password" id="signupPassword" placeholder="Password" required>
+                <button onclick="signup()">Sign Up</button>
+                <p>Already have an account? <a href="#" onclick="toggleAuth('login')">Login</a></p>
+            </div>
+        </div>
+
+        <div class="main-content hidden" id="mainContent">
+            <header>
+                <h1>Price Compare</h1>
+                <p>Compare prices across multiple platforms</p>
+                <nav>
+                    <button onclick="checkout()" class="cart-btn">Checkout</button>
+                    <button onclick="logout()" class="logout-btn">Logout</button>
+                </nav>
+            </header>
+
+            <div class="category-cards">
+                <div class="category-card" onclick="navigateTo('rides')">
+                    <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800&auto=format&fit=crop&q=60" alt="Rides">
+                    <h3>Ride Comparison</h3>
+                    <p>Compare prices across Uber, Ola, and Rapido</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('food')">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop&q=60" alt="Food">
+                    <h3>Food Delivery</h3>
+                    <p>Compare prices across Swiggy, Zomato, and more</p>
+                </div>
+                <div class="category-card" onclick="navigateTo('shopping')">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=60" alt="Shopping">
+                    <h3>Product Comparison</h3>
+                    <p>Compare prices across Amazon, Flipkart, and more</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="comparison-page hidden" id="ridesPage">
+            <header>
+                <h2>Ride Comparison</h2>
+                <button onclick="navigateTo('home')" class="back-btn">Back to Home</button>
+            </header>
+            <div class="ride-form">
+                <input type="text" id="pickupLocation" placeholder="Pickup Location">
+                <input type="text" id="dropLocation" placeholder="Drop Location">
+                <button onclick="compareRides()">Compare Rides</button>
+            </div>
+            <div class="results-container" id="ridesResults"></div>
+        </div>
+
+        <div class="comparison-page hidden" id="foodPage">
+            <header>
+                <h2>Food Delivery Comparison</h2>
+                <button onclick="navigateTo('home')" class="back-btn">Back to Home</button>
+            </header>
+            <div class="search-section">
+                <input type="text" id="foodSearch" placeholder="Search for food...">
+                <button onclick="compareFood()">Search</button>
+            </div>
+            <div class="results-container" id="foodResults"></div>
+        </div>
+
+        <div class="comparison-page hidden" id="shoppingPage">
+            <header>
+                <h2>Product Comparison</h2>
+                <button onclick="navigateTo('home')" class="back-btn">Back to Home</button>
+            </header>
+            <div class="search-section">
+                <input type="text" id="productSearch" placeholder="Search for products...">
+                <button onclick="compareProducts()">Search</button>
+            </div>
+            <div class="results-container" id="shoppingResults"></div>
+        </div>
+
+        <div class="checkout-page hidden" id="checkoutPage">
+            <header>
+                <h2>Checkout</h2>
+                <button onclick="navigateTo('home')" class="back-btn">Back to Home</button>
+            </header>
+            <div class="checkout-container">
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be populated here -->
+                </div>
+                <div class="checkout-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-item">
+                        <span>Items Total</span>
+                        <span id="itemsTotal">₹0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Delivery Charges</span>
+                        <span id="deliveryTotal">₹0</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total Amount</span>
+                        <span id="finalTotal">₹0</span>
+                    </div>
+                    <button onclick="placeOrder()" class="place-order-btn">Place Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
